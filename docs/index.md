@@ -3,13 +3,17 @@ hide:
   - feedback
 ---
 
+<!-- 首页顶部大图 -->
+<div class="home-hero">
+  <img src="assets/hero.jpg" alt="Hero Image" style="width:100%; max-height:400px; object-fit:cover; border-radius:8px;">
+</div>
+
 # 首页
 
-欢迎来到 Hello World 战队技术知识库！目前知识库仅包含电控部分。
+欢迎来到 HotPot 战队技术知识库！目前知识库仅包含电控部分。
 
 **电控知识库** 介绍了电控组的工作内容，为开发、测试和源码贡献流程提供指南。此外，目前我们正在向*机器人通用组件*和*嵌入式系统支持*两方面发展自研组件，详细的说明文档也将存放于知识库中。
 
 其他技术组的知识库待开发。
-
 
 

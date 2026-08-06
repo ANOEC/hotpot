@@ -1,2 +1,2 @@
 # Wiki
-Tech Wiki of Hello World Team 
+Tech Wiki of HotPot Team 

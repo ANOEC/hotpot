@@ -1,6 +1,6 @@
-site_name: Hello World 技术知识库
+site_name: HotPot 技术知识库
 
-copyright: Copyright &copy; 2022 - 2024 Hello World Team, Zhejiang University
+copyright: Copyright &copy; 2022 - 2024 HotPot Team, Zhejiang University
 
 repo_url: https://github.com/ZJU-HelloWorld/Wiki
 repo_name: ZJU-HelloWorld/Wiki
@@ -8,7 +8,7 @@ edit_uri: edit/main/docs/
 
 theme:
     logo: assets/rm.svg
-    favicon: assets/rm.svg
+    favicon: assets/rm.png
 
     icon:
         edit: material/pencil 
@@ -104,8 +104,8 @@ extra_javascript:
 #   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-# extra_css:
-#   - stylesheets/extra.css
+extra_css:
+  - stylesheets/extra.css
 
 extra: 
 #     version:

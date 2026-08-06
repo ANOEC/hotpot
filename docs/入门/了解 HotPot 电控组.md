@@ -1,4 +1,4 @@
-# 了解 Hello World 电控组
+# 了解 HotPot 电控组
 
 
 

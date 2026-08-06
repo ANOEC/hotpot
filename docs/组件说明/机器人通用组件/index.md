@@ -11,7 +11,7 @@ hide:
 
 <figure markdown>
 ![组件库架构](./assets/HW-Components-frame.png){width=90%}
-<caption>Hello World 战队电控组件库架构</caption>
+<caption>HotPot 战队电控组件库架构</caption>
 </figure>
 战队组件库架构如图所示。框架在结构上简单分为三层：基础模块层（Low Level Modules）、高级模块层（High Level Modules）和用户应用层（User Applications）。整体使用的设计模式是**结构层级模式**，上层模块通过组装不同的下层模块实现更强大的功能，最终由用户（各兵种电控）自由选取、调用并开发兵种代码。
 
