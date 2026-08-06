@@ -1,10 +1,10 @@
 site_name: HotPot 技术知识库
 site_url: https://anoec.github.io/hotpot/
 
-copyright: Copyright &copy; 2022 - 2024 HotPot Team, Zhejiang University
+copyright: Copyright &copy; 2026 HotPot Team, Sichuan University
 
-repo_url: https://github.com/ZJU-HelloWorld/Wiki
-repo_name: ZJU-HelloWorld/Wiki
+repo_url: https://github.com/ANOEC/hotpot
+repo_name: ANOEC/hotpot
 edit_uri: edit/main/docs/
 
 theme:
@@ -120,44 +120,12 @@ extra:
 #           make our documentation better.
 #       cookies:
 #         analytics: Google Analytics 
-    analytics:
-        provider: google
-        property: G-12BWRJ4SWG
-        feedback:
-            title: 此页面如何?
-            ratings:
-                - icon: material/star
-                  name: 完全没帮助
-                  data: 0
-                  note: >-
-                        感谢反馈！联系作者或点击标题右侧的浅色 pencil 标记来帮助改进XD
-                - icon: material/star
-                  name: 有点拉
-                  data: 1
-                  note: >-
-                        感谢反馈！联系作者或点击标题右侧的浅色 pencil 标记来帮助改进XD
-                - icon: material/star
-                  name: 一般般
-                  data: 2
-                  note: >-
-                        感谢反馈！联系作者或点击标题右侧的浅色 pencil 标记来帮助改进XD
-                - icon: material/star
-                  name: 还不错
-                  data: 3
-                  note: >-
-                        感谢反馈！联系作者或点击标题右侧的浅色 pencil 标记来帮助改进XD
-                - icon: material/star
-                  name: 很棒！
-                  data: 4
-                  note: >- 
-                        感谢反馈！
-
     # generator: false
     social:
         - icon: fontawesome/brands/github
-          link: https://github.com/ZJU-HelloWorld
+          link: https://github.com/ANOEC/hotpot
         - icon: fontawesome/solid/paper-plane
-          link: mailto:<ZJU_HelloWorld@163.com>
+          link: mailto:<Snoopy_He@outlook.com>
 
 plugins:
       # - social
@@ -165,6 +133,3 @@ plugins:
       - awesome-pages
       # - i18n:
       - glightbox
-      - git-revision-date-localized:
-            enable_creation_date: true
-            type: iso_date
