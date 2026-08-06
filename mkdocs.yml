@@ -1,10 +1,10 @@
 site_name: HotPot 技术知识库
-site_url: https://anoec.github.io/hotpot.github.io/
+site_url: https://anoec.github.io/hotpot/
 
 copyright: Copyright &copy; 2026 HotPot Team, Sichuan University
 
-repo_url: https://github.com/ANOEC/hotpot.github.io
-repo_name: ANOEC/hotpot.github.io
+repo_url: https://github.com/ANOEC/hotpot
+repo_name: ANOEC/hotpot
 edit_uri: edit/main/docs/
 
 theme:
@@ -123,7 +123,7 @@ extra:
     # generator: false
     social:
         - icon: fontawesome/brands/github
-          link: https://github.com/ANOEC/hotpot.github.io
+          link: https://github.com/ANOEC/hotpot
         - icon: fontawesome/solid/paper-plane
           link: mailto:<Snoopy_He@outlook.com>
 
