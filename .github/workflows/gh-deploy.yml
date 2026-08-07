@@ -6,6 +6,9 @@ on:
         - main
 env:
   TZ: Asia/Hangzhou
+
+permissions:
+  contents: write
   
 jobs:
   deploy:
