@@ -1,10 +1,10 @@
 # PID 控制器
 
- <img src = "https://img.shields.io/badge/version-1.0.1-green"> <sp> <img src = "https://img.shields.io/badge/author-dungloi-lightgrey"> 
- 
+<img src = "https://img.shields.io/badge/version-1.0.1-green"> <sp> <img src = "https://img.shields.io/badge/author-dungloi-lightgrey">
+
 ## 理论
 
-PID（*Proportional-Integral-Derivative*）控制器是一种线性控制器，根据被控对象给定值 $r(t)$ 和实际值 $y(t)$ 的控制偏差
+PID（_Proportional-Integral-Derivative_）控制器是一种线性控制器，根据被控对象给定值 $r(t)$ 和实际值 $y(t)$ 的控制偏差
 
 $$
 e(t)=r(t)-y(t)
@@ -78,7 +78,7 @@ $$
 
 $$
 \begin{align}
-u_i(k)=\beta \sum^k_{j=t_0}K_ie(j)T \\ 
+u_i(k)=\beta \sum^k_{j=t_0}K_ie(j)T \\
 其中\ \beta=
 \begin{cases}
 1, &|e(k)| {\leqslant} \epsilon_0\\
@@ -177,27 +177,34 @@ $$
 ![image-20221125075755503](PID%E6%8E%A7%E5%88%B6%E5%99%A8.assets/image-20221125075755503.png)
 
 我们重点关注按输入补偿的复合控制系统设计。由上图 (b) ，系统输出为
+
 $$
 C(s)=\frac{[G_1(s)+G_r(s)]G_2(s)}{1+G_1(s)G_2(s)}R(s)
 $$
+
 如果选择前馈补偿装置传函 $G_r(s)=\frac1{G_2(s)}$，则有
+
 $$
 C(s)=R(s)
 $$
+
 使得系统输出复现输入，具有理想的时间响应特性。实际这种全补偿难以实现，因此一般采用部分补偿，常用的方法有取输入信号的一阶导数作为前馈补偿信号，即：
+
 $$
 G_r(s)=\lambda_1s
 $$
-此方案原理可参考资料[2]第283页。实际中由于控制器工作频率可能高于给定信号频率，此时若采用后向差分则不能获得平滑的前馈量。因此考虑采用跟踪微分器，输出量表示为
+
+此方案原理可参考资料[2]第 283 页。实际中由于控制器工作频率可能高于给定信号频率，此时若采用后向差分则不能获得平滑的前馈量。因此考虑采用跟踪微分器，输出量表示为
+
 $$
 u_f(k)=\lambda_1 \cdot TD[r(k)]
 $$
+
 其中常系数 $\lambda_1\in[0,+\infty)$ 表示前馈补偿信号的强度，根据实际情况人为指定。
 
 ### 串级控制（Cascade Control）
 
-二（或多）个 PID 控制器可以组合在一起，以产生更好的动态性能，称之为串级 PID 控制。以两个 PID 控制器组成的串级控制器为例，其中一个 PID 控制器充当外（主）回路控制器，控制像液面高度或是速度等主要的物理量；另一个 PID 控制器充当内（副）回路控制器，以外回路控制器的输出做为其给定值，通常控制更快速变化的参数，例如流量或加速度等。使用串级 PID 控制可以提升控制器的工作频率，并降低其时间常数；内回路能够抑制扰动，从而大大减小扰动对外回路的影响。 
- 
+二（或多）个 PID 控制器可以组合在一起，以产生更好的动态性能，称之为串级 PID 控制。以两个 PID 控制器组成的串级控制器为例，其中一个 PID 控制器充当外（主）回路控制器，控制像液面高度或是速度等主要的物理量；另一个 PID 控制器充当内（副）回路控制器，以外回路控制器的输出做为其给定值，通常控制更快速变化的参数，例如流量或加速度等。使用串级 PID 控制可以提升控制器的工作频率，并降低其时间常数；内回路能够抑制扰动，从而大大减小扰动对外回路的影响。
 
 ## 快速开始
 
@@ -215,15 +222,15 @@ system.h
 ```
 
 ### 使用前准备
- 
+
 本组件依赖的 filter.c/h 涉及 CMSIS-DSP 矩阵运算等操作。
- 
+
 使用本组件前需要做以下准备：
 
-* 添加源文件, 包含头文件路径；注意 DSP 版本须在 1.10.0 及以上
-* 添加预处理宏以开启浮点运算单元（FPU）
-* 在使用 STM32CubeMX 生成项目时，请在 Code Generator 界面 Enable Full Assert，来帮助断言设备驱动中的错误；在 `main.c` 中修改 `assert_failed` 函数以指示断言结果，如添加 `while(1);`
-* 在 `system.h` 中 `system options: user config` 处进行系统设置
+- 添加源文件, 包含头文件路径；注意 DSP 版本须在 1.10.0 及以上
+- 添加预处理宏以开启浮点运算单元（FPU）
+- 在使用 STM32CubeMX 生成项目时，请在 Code Generator 界面 Enable Full Assert，来帮助断言设备驱动中的错误；在 `main.c` 中修改 `assert_failed` 函数以指示断言结果，如添加 `while(1);`
+- 在 `system.h` 中 `system options: user config` 处进行系统设置
 
 ### 示例
 
@@ -236,32 +243,33 @@ system.h
 实例化一个 PID 控制器：
 
 === "Standard Controller"
-    ```c
+`c
     Pid_t pid;
-    ```
+    `
 === "N-loop Cascade Controller"
-    ```c
+`c
     Pid_t pid_n_loop;
-    ```
+    `
 
 创建参数结构体数组，按节点顺序（外回路 -> 内回路）设置控制器节点参数，参数含义见组件说明。如带给定值过零处理（单位 $\rm rad$）的控制器：
 
 === "Standard Controller"
-    ```c
-    const PidParams_t pid_param = 
-    {
-      .kType = PID_ACROSS0_RAD,
-      .kImprvOption = INTE_SEPARATION | INTE_CHANGING_RATE | DEAD_BAND | SETPOINT_RAMPING | SETPOINT_FEED_FORWARD, 
-    
+
+````c
+const PidParams_t pid_param =
+{
+.kType = PID_ACROSS0_RAD,
+.kImprvOption = INTE_SEPARATION | INTE_CHANGING_RATE | DEAD_BAND | SETPOINT_RAMPING | SETPOINT_FEED_FORWARD,
+
       .kp = 500.0f,
       .ki = 5.0f,
       .kd = 1.0f,
       .kOutMin = -30000,
       .kOutMax = 30000,
-  
+
       .kWindUpOutMax = 5000,
       .kDWeight = 0.9f,
-  
+
       .kISeparThresUpper = 1.0f,
       .kISeparThresLower = -1.0f,
       .kUpperB = 2.0f,
@@ -275,25 +283,31 @@ system.h
       .kf = 1.0f,
     };
     ```
+
 === "N-loop Cascade Controller"
-    ```c
-    const PidParams_t pid_n_loop_param[N] = {{...}, {...}, ...};
-    ```
+`c
+    const PidParams_t pid_n_loop_param[N] =
+    {
+        {...},
+        {...},
+        ...
+    };
+    `
 
 其中 `kType, kImprvOption, kp, ki, kd, kOutMin, kOutMax, kWindUpOutMax, kDWeight` 为基础参数，请在初始化时按需求指定；其他参数为搭配优化选项的可选参数。若无需优化，使用 `.kImprvOption = IMPRV_NONE` 语句。
- 
+
 > 说明：所有参数均具有缺省值，部分参数的缺省值已在理论部分给出，未给出的默认为 0。
- 
+
 初始化 PID 控制器，如：
 
 === "Standard Controller"
-    ```c
+`c
     PidInit(&pid, 1, &pid_param);
-    ```
+    `
 === "N-loop Cascade Controller"
-    ```c
+`c
     PidInit(&pid_n_loop, N, pid_n_loop_param);
-    ```
+    `
 
 > 若希望引入按输入前馈补偿，则需开启 `SETPOINT_FEED_FORWARD` 优化选项，并使用跟踪微分器，该组件位于 `Utils/filter.c` 中。实例化一个跟踪微分器并传入参数进行初始化，然后向已实例化的 PID 控制器指明节点编号（编号顺序为外回路 -> 内回路，从 0 开始），向该节点注册（线性）跟踪微分器：
 >
@@ -302,6 +316,7 @@ system.h
 > TdInit(&td, r, h0, h);        // h = 1.0f / CTRL_FREQ
 > pid.tdRegister(&pid, N, &td); // loop no.N, numbered from 0
 > ```
+>
 > 其中 $h_0$ 为滤波因子， $h_0$ 越大滤波效果越好； $h$ 为步长， $h$ 越小滤波效果越好；一般来说， $h_0$ 略大于步长 $h$； $r$ 为快速因子， $r$ 越大，跟踪越快。
 >
 > 更多原理和参数调节规律详见滤波器算法组件说明，或咨询沈组长 :heart_eyes:
@@ -309,15 +324,14 @@ system.h
 传入 PID 控制器句柄、最外回路给定值、各回路反馈值（存储顺序由外回路到内回路）数组首地址、存储输出量的内存地址，计算 PID 控制器输出：
 
 ```c
-pid.calcPid(&pid, ref, &fdb, &out);	
-```
+pid.calcPid(&pid, ref, &fdb, &out);
+````
 
 若 PID 控制器是动态创建的，在其生存周期终止前还需要手动释放内存：
 
- ```c
- pid.delPid(&pid);
- ```
-
+```c
+pid.delPid(&pid);
+```
 
 ### 组件说明
 
@@ -334,17 +348,17 @@ PID 控制器。
 
 方法
 
-| 名称<img width=250/> | 参数说明                                                     | 描述                                  |
-| :------------------ | :----------------------------------------------------------- | ------------------------------------- |
-| `PidInit` | 传入参数 ` loops` 标识本 PID 控制器级数；`params_list  ` 为存储各节点 PID 参数结构体数组的首地址，请设定所有 `loops `个节点参数，将按外回路 -> 内回路顺序读取数据 | 用传入的参数初始化一个 PID 控制器。   |
-| `calcPid`           | 传入参数 `ref` 为最外回路给定值；`fdb` 为各回路反馈值（存储顺序由外回路到内回路）数组首地址；传入地址 `out`，存储最内回路（末级） PID 输出结果 | 根据输入的数据，计算 PID 控制器输出。 |
-| `tdRegister`        | 传入参数 ` loop_no ` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；传入指定回路 ref 的跟踪微分器指针 `p_td` 以实现前馈 | 为对应 PID 节点注册跟踪微分器。       |
-| `delPid`            | / | 释放为 PID 控制器所有节点动态申请的内存。  |
-| `resetData`         | /                                                            | 重置所有节点 PID 中间项。             |
-| `resetNodeParams`   | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；传入 PID 节点参数数值 | 重置对应节点 PID 参数。               |
-| `getNode`           | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；返回类型 `PidNode_t*` | 返回对应 PID 节点指针。               |
-| `getNodeData`       | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；返回类型 `PidData_t*` | 返回对应 PID 节点中间项结构体指针。   |
-| `getNodeParams`     | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；返回类型 `PidParams_t*` | 返回对应 PID 节点参数结构体指针。     |
+| 名称<img width=250/> | 参数说明                                                                                                                                                          | 描述                                      |
+| :------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `PidInit`            | 传入参数 ` loops` 标识本 PID 控制器级数；`params_list  ` 为存储各节点 PID 参数结构体数组的首地址，请设定所有 `loops `个节点参数，将按外回路 -> 内回路顺序读取数据 | 用传入的参数初始化一个 PID 控制器。       |
+| `calcPid`            | 传入参数 `ref` 为最外回路给定值；`fdb` 为各回路反馈值（存储顺序由外回路到内回路）数组首地址；传入地址 `out`，存储最内回路（末级） PID 输出结果                    | 根据输入的数据，计算 PID 控制器输出。     |
+| `tdRegister`         | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；传入指定回路 ref 的跟踪微分器指针 `p_td` 以实现前馈                                       | 为对应 PID 节点注册跟踪微分器。           |
+| `delPid`             | /                                                                                                                                                                 | 释放为 PID 控制器所有节点动态申请的内存。 |
+| `resetData`          | /                                                                                                                                                                 | 重置所有节点 PID 中间项。                 |
+| `resetNodeParams`    | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；传入 PID 节点参数数值                                                                     | 重置对应节点 PID 参数。                   |
+| `getNode`            | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；返回类型 `PidNode_t*`                                                                     | 返回对应 PID 节点指针。                   |
+| `getNodeData`        | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；返回类型 `PidData_t*`                                                                     | 返回对应 PID 节点中间项结构体指针。       |
+| `getNodeParams`      | 传入参数 `loop_no` 为指定回路按外回路 -> 内回路顺序从 0 开始得到的编号；返回类型 `PidParams_t*`                                                                   | 返回对应 PID 节点参数结构体指针。         |
 
 #### `PidNode` 结构体
 
@@ -365,38 +379,37 @@ PID 控制器。
 
 存储 PID 参数。
 
-| 名称                                             | 类型        | 示例值                                               | 描述                                                         |
-| :----------------------------------------------- | :---------- | :--------------------------------------------------- | :----------------------------------------------------------- |
-| `kType`                                          | `PidType_t` | PID_ACROSS0_RAD<br>PID_ACROSS0_DEGREE<br>PID_DEFAULT | PID 处理类型                                                 |
+| 名称                                             | 类型        | 示例值                                               | 描述                                                                                         |
+| :----------------------------------------------- | :---------- | :--------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+| `kType`                                          | `PidType_t` | PID_ACROSS0_RAD<br>PID_ACROSS0_DEGREE<br>PID_DEFAULT | PID 处理类型                                                                                 |
 | `kImprvOption`                                   | `uint16_t`  | /                                                    | 优化选项集合,由所有需启用的优化枚举类型 `PidImprvType_t` 的优化选项 “按位与” 合成 `uint16_t` |
-| `kp / ki / kd`                                   | `float`     | 500.0 / 5.0 /1.0                                     | PID 增益                                                      |
-| `kOutMin`                                        | `float`     | -30000                                               | 最小输出                                                     | 
-| `kOutMax`                                        | `float`     | 30000                                                | 最大输出                                                      |
-| `kWindUpOutMax`                                  | `float`     | 5000                                                 | 使能抗积分饱和的临界输出，$\pm$kWindUpOutMax                 |
-| `kDWeight`                                      | `float`     | 0.9                                                  | 微分一阶滤波系数，默认值 1.0                                 |
-| `kISeparThresUpper `<br>`kISeparThresLower `     | `float`     | 1.0 / -1.0                                           | 使能积分分离的临界误差                                       |
-| `kUpperB`<br>`kLowerA`                           | `float`     | 2.0 / 0.1                                            | 线性变速积分误差区间，$\pm$kUpperB / kLowerA                 |
-| `kDeadBandThresUpper `<br>`kDeadBandThresLower ` | `float`     | 1.0/ -1.0                                            | 误差死区上下限                                               |
-| `kSpThresUpper `<br>`kSpThresLower `             | `float`     | 30 / -30                                             | 使能给定值平滑的临界误差                                     |
-| `kSpWeight `                                     | `float`     | 0.5                                                  | 给定值平滑一阶滤波系数                                       |
-| `kf`                                             | `float`     | 1.0                                                  | 前馈补偿强度系数                                             |
-
+| `kp / ki / kd`                                   | `float`     | 500.0 / 5.0 /1.0                                     | PID 增益                                                                                     |
+| `kOutMin`                                        | `float`     | -30000                                               | 最小输出                                                                                     |
+| `kOutMax`                                        | `float`     | 30000                                                | 最大输出                                                                                     |
+| `kWindUpOutMax`                                  | `float`     | 5000                                                 | 使能抗积分饱和的临界输出，$\pm$kWindUpOutMax                                                 |
+| `kDWeight`                                       | `float`     | 0.9                                                  | 微分一阶滤波系数，默认值 1.0                                                                 |
+| `kISeparThresUpper `<br>`kISeparThresLower `     | `float`     | 1.0 / -1.0                                           | 使能积分分离的临界误差                                                                       |
+| `kUpperB`<br>`kLowerA`                           | `float`     | 2.0 / 0.1                                            | 线性变速积分误差区间，$\pm$kUpperB / kLowerA                                                 |
+| `kDeadBandThresUpper `<br>`kDeadBandThresLower ` | `float`     | 1.0/ -1.0                                            | 误差死区上下限                                                                               |
+| `kSpThresUpper `<br>`kSpThresLower `             | `float`     | 30 / -30                                             | 使能给定值平滑的临界误差                                                                     |
+| `kSpWeight `                                     | `float`     | 0.5                                                  | 给定值平滑一阶滤波系数                                                                       |
+| `kf`                                             | `float`     | 1.0                                                  | 前馈补偿强度系数                                                                             |
 
 ## 附录
 
 ### 版本说明
 
-| 版本号                                                       | 发布日期   | 说明                                     | 贡献者 |
-| ------------------------------------------------------------ | ---------- | ---------------------------------------- | ------ |
-| <img src = "https://img.shields.io/badge/version-0.9.0-green" > | 2022.10.31 | 完成PID优化文档并实现                    | 薛东来 |
+| 版本号                                                          | 发布日期   | 说明                                     | 贡献者 |
+| --------------------------------------------------------------- | ---------- | ---------------------------------------- | ------ |
+| <img src = "https://img.shields.io/badge/version-0.9.0-green" > | 2022.10.31 | 完成 PID 优化文档并实现                  | 薛东来 |
 | <img src = "https://img.shields.io/badge/version-1.0.0-green" > | 2022.12.01 | 加入串级、前馈内容，测试发布             | 薛东来 |
 | <img src = "https://img.shields.io/badge/version-1.0.1-green" > | 2022.12.03 | 修正部分表述，使用动态内存分配，无需手动 | 薛东来 |
 
 ### 参考资料
 
-[1] [刘金琨. 先进PID控制MATLAB仿真. 第4版. 北京: 电子工业出版社, 2016.](https://g6ursaxeei.feishu.cn/wiki/wikcnfVj5iRhjhn4QNNpaFGMeDh?table=tblDBoGzi8ASFqbx&view=vewx5ZOj1f&record=recg9aNIxo&field=fldSN7AY4l)
+[1] [刘金琨. 先进 PID 控制 MATLAB 仿真. 第 4 版. 北京: 电子工业出版社, 2016.](https://g6ursaxeei.feishu.cn/wiki/wikcnfVj5iRhjhn4QNNpaFGMeDh?table=tblDBoGzi8ASFqbx&view=vewx5ZOj1f&record=recg9aNIxo&field=fldSN7AY4l)
 
-[2] [胡寿松主编. 自动控制原理. 第7版. 北京: 科学出版社, 2019.02.](https://g6ursaxeei.feishu.cn/wiki/wikcnfVj5iRhjhn4QNNpaFGMeDh?table=tblDBoGzi8ASFqbx&view=vewx5ZOj1f&record=recWdpyDk3&field=fldSN7AY4l)
+[2] [胡寿松主编. 自动控制原理. 第 7 版. 北京: 科学出版社, 2019.02.](https://g6ursaxeei.feishu.cn/wiki/wikcnfVj5iRhjhn4QNNpaFGMeDh?table=tblDBoGzi8ASFqbx&view=vewx5ZOj1f&record=recWdpyDk3&field=fldSN7AY4l)
 
 [3] <https://en.wikipedia.org/wiki/PID_controller>
 

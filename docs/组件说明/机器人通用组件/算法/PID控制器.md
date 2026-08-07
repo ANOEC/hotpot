@@ -376,7 +376,12 @@ const hw_pid::MultiNodesPid::Type kPidTypeCascade =
     hw_pid::MultiNodesPid::Type::kCascade;
 hw_pid::MultiNodesPid unique_cascade_pid(kPidTypeCascade, kOutLimit,kPidParams);
 // 实例化三节点的并行 PID 控制器，多节点 PID 控制的输出限制为 -16000 ~ 16000，内部节点参数在初始化时指定
-const hw_pid::MultiNodesPid::Params params_arr[3] = {{...}, {...}, {...}};
+const hw_pid::MultiNodesPid::Params params_arr[3] =
+{
+    {...},
+    {...},
+    {...},
+};
 hw_pid::MultiNodesPid parallel_pid(hw_pid::MultiNodesPid::Type::kParallel, hw_pid::OutLimit(true, -16000, 16000), hw_pid::MultiNodesPid::ParamsList(params_arr, params_arr+3));
 ```
 
