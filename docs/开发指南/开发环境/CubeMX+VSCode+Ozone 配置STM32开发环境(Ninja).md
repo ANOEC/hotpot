@@ -13,7 +13,7 @@ id7[(CMake<br>工程构建工具)]-->id77
 id9-->id10[[调试方案]]-->id12[(Cortex-Debug插件<br>基于GDB Server, 仅能断点调试)]
 id11-->id14[(J-Link)]-->id19
 id12-->id17[(OpenOCD)]-->...
-id15[(CMSIS-DAP)]-->id19{{目标开发板}}
+id15[(CMSIS-DAP)]-->id19{目标开发板}
 id10-->id11[(Ozone<br>完善的调试工具, 实时监看, 显示波形)]
 id11-.Terminal.-id16[(J-Link RTT)]-->id14
 id10-->id18[(串口助手<br>显示波形, 数据交互)]-->id15
