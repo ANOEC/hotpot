@@ -12,6 +12,48 @@
   --md-accent-fg-color: #B92518;
 }
 
+/* ===== 全局水印背景（半透明 logo） ===== */
+body {
+  background-image: url("../assets/rm.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: 40%;
+  /* 通过调整主内容区透明度来控制 logo 可见度 */
+}
+
+/* 主内容区加一层半透明白色，让背景 logo 透出来 */
+.md-main {
+  background: transparent;
+}
+
+.md-main__inner {
+  background: transparent;
+}
+
+/* 内容区域加微弱半透明白底，保证文字可读 */
+.md-content {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* 侧边栏也做半透明 */
+.md-sidebar {
+  background-color: rgba(255, 255, 255, 0.70);
+}
+
+/* 暗色模式下调整 */
+[data-md-color-scheme="slate"] .md-content {
+  background-color: rgba(18, 18, 18, 0.75);
+}
+
+[data-md-color-scheme="slate"] .md-sidebar {
+  background-color: rgba(18, 18, 18, 0.70);
+}
+
+[data-md-color-scheme="slate"] body {
+  background-image: url("../assets/rm.png");
+}
+
 /* ===== 顶部导航栏纯红色 ===== */
 .md-header {
   background: #B92518;
@@ -69,6 +111,32 @@
 }
 
 [data-md-color-scheme="slate"] .md-tabs {
+  background: #B92518;
+}
+
+/* ===== 手机端侧边栏导航统一红色 ===== */
+/* 手机端导航抽屉（左侧滑出）的背景和标题栏 */
+.md-nav--primary .md-nav__title {
+  background: #B92518;
+  color: #fff;
+}
+
+/* 手机端导航抽屉中嵌套的 nav 标题 */
+.md-nav--primary .md-nav__title[for] {
+  background: #B92518;
+}
+
+/* 手机端侧边栏整体 */
+.md-sidebar--primary {
+  background: #fff;
+}
+
+/* 暗色模式下的手机导航 */
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__title {
+  background: #B92518;
+}
+
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__title[for] {
   background: #B92518;
 }
 
