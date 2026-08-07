@@ -5,21 +5,13 @@ copyright: Copyright &copy; 2026 HotPot Team, Sichuan University
 
 repo_url: https://github.com/ANOEC/hotpot
 repo_name: ANOEC/hotpot
-edit_uri: edit/main/docs/
-
 theme:
     logo: assets/rm.svg
     favicon: assets/rm.png
 
-    icon:
-        edit: material/pencil 
-        view: material/eye
-
     features:
         - content.code.copy
-        - content.code.annotate 
-        - content.action.edit
-        - content.action.view
+        - content.code.annotate
       #   - navigation.instant
         # - navigation.sections
         - navigation.tabs
@@ -100,9 +92,9 @@ markdown_extensions:
                 format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra_javascript:
-#   - javascripts/mathjax.js
-#   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
 
 extra_css:
   - stylesheets/extra.css
