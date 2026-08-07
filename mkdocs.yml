@@ -31,7 +31,6 @@ theme:
         - navigation.top
         - header.autohide
         - navigation.expand
-        - announce.dismiss
         
     custom_dir: overrides
 
