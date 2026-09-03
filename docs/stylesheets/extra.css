@@ -205,3 +205,47 @@ body {
     padding: 0.3rem 0.6rem;
   }
 }
+
+.hotpot-character {
+    position: fixed;
+    right: 20px;
+    bottom: 64px;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.hotpot-character img {
+    width: 240px;
+    height: auto;
+    display: block;
+}
+
+.hotpot-character::before {
+    content: "沸腾不熄，火力全开！";
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+}
+
+.hotpot-character:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .hotpot-character img {
+        width: 160px;
+    }
+}

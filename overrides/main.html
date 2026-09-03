@@ -2,3 +2,10 @@
 
 {% block announce %}
 {% endblock %}
+
+{% block content %}
+  {{ super() }}
+  <div class="hotpot-character">
+    <img src="{{ base_url }}/assets/character.png" alt="HotPot" />
+  </div>
+{% endblock %}

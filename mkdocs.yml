@@ -95,6 +95,8 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
   - javascripts/mermaid-init.js
+  - javascripts/vendor/gsap.min.js
+  - javascripts/gsap-test.js
 
 extra_css:
   - stylesheets/extra.css
